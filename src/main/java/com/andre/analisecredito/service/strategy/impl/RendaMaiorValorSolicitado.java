@@ -2,7 +2,9 @@ package com.andre.analisecredito.service.strategy.impl;
 
 import com.andre.analisecredito.domain.Proposta;
 import com.andre.analisecredito.service.strategy.CalculoPonto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RendaMaiorValorSolicitado  implements CalculoPonto {
 
     @Override
