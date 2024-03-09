@@ -1,5 +1,6 @@
 package com.andre.analisecredito.service.strategy.impl;
 
+import com.andre.analisecredito.constantes.MensagemConstante;
 import com.andre.analisecredito.domain.Proposta;
 import com.andre.analisecredito.exceptions.StrategyException;
 import com.andre.analisecredito.service.strategy.CalculoPonto;
@@ -15,7 +16,7 @@ public class NomeNegativadoImpl implements CalculoPonto {
     @Override
     public int calcular(Proposta proposta) {
         if (nomeNegativado()) {
-            throw new StrategyException("Nome negativado");
+            throw new StrategyException(String.format(MensagemConstante.CLIENTE_NEGATIVADO, proposta.getUsuario().getNome()));
         }
         return 100;
     }

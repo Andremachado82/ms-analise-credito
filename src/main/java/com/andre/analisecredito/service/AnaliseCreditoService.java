@@ -24,9 +24,8 @@ public class AnaliseCreditoService {
 
     public void analisar(Proposta proposta) {
         try {
-            boolean propostaAprovada = calculoPontoList.stream().mapToInt(
-                    impl -> impl.calcular(proposta)).sum() > 350;
-            proposta.setAprovada(propostaAprovada);
+            int pontos = calculoPontoList.stream().mapToInt(impl -> impl.calcular(proposta)).sum();
+            proposta.setAprovada(pontos > 350);
         } catch (StrategyException ex) {
             proposta.setAprovada(false);
             proposta.setObservacao(MensagemConstante.PONTUACAO_SERASA_BAIXA);

@@ -1,5 +1,6 @@
 package com.andre.analisecredito.service.strategy.impl;
 
+import com.andre.analisecredito.constantes.MensagemConstante;
 import com.andre.analisecredito.domain.Proposta;
 import com.andre.analisecredito.exceptions.StrategyException;
 import com.andre.analisecredito.service.strategy.CalculoPonto;
@@ -16,8 +17,8 @@ public class PontuacaoScoreImpl implements CalculoPonto {
     public int calcular(Proposta proposta) {
         int score = score();
 
-        if (score <= 200) {
-            throw new StrategyException("Score baixo");
+        if (score < 200) {
+            throw new StrategyException(String.format(MensagemConstante.PONTUACAO_SERASA_BAIXA, proposta.getUsuario().getNome()));
         } else if (score <=400) {
             return 150;
         } else if (score <= 600)  {
