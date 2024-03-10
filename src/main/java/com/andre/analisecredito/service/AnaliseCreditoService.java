@@ -1,6 +1,5 @@
 package com.andre.analisecredito.service;
 
-import com.andre.analisecredito.constantes.MensagemConstante;
 import com.andre.analisecredito.domain.Proposta;
 import com.andre.analisecredito.exceptions.StrategyException;
 import com.andre.analisecredito.service.strategy.CalculoPonto;
@@ -28,7 +27,7 @@ public class AnaliseCreditoService {
             proposta.setAprovada(pontos > 350);
         } catch (StrategyException ex) {
             proposta.setAprovada(false);
-            proposta.setObservacao(MensagemConstante.PONTUACAO_SERASA_BAIXA);
+            proposta.setObservacao(ex.getMessage());
         }
         notificacaoRabbitMQService.notificar(propostaConcluidaExchange, proposta);
 
